@@ -17,7 +17,9 @@ def get_zapi(host, user, password, verify):
     :return:
     """
     zapi = ZabbixAPI( host, user = user, password = password )
-    # Whether or not to verify the SSL certificate
+    
+	# Whether or not to verify the SSL certificate
+	#had to comment this out. Seems not working in my zabbixapi //dbax
     #zapi.session.verify = verify
     #zapi.login(user = user, password = password)
     return zapi
