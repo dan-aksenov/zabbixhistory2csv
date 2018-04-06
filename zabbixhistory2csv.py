@@ -16,10 +16,10 @@ def get_zapi(host, user, password, verify):
     :param verify:
     :return:
     """
-    zapi = ZabbixAPI(host)
+    zapi = ZabbixAPI( host, user = user, password = password )
     # Whether or not to verify the SSL certificate
-    zapi.session.verify = verify
-    zapi.login(user, password)
+    #zapi.session.verify = verify
+    #zapi.login(user = user, password = password)
     return zapi
 
 
@@ -154,7 +154,7 @@ if __name__ == '__main__':
             print('Unauthorized: Please check your username and password')
         else:
             print('Error connecting to zabbixapi: {0}'.format(e))
-        exit()
+        sys.exit()
 
     # generate the list of history objects returned from zabbix api.
     try:
@@ -163,7 +163,7 @@ if __name__ == '__main__':
         message = ('An error has occurred.  --max-days may be set too high. '
                    'Try decreasing it value.\nError:\n{0}')
         print(message.format(e))
-        exit()
+        sys.exit()
 
     # Write the results to file in csv format
     write_csv(results, args.output_file)
